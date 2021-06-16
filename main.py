@@ -39,12 +39,10 @@ def get_input():
 
         user_input = input("\nMake Selection: ")
 
-        if user_input in choices:
+        if user_input.upper() in choices:
 
             for stack in stacks:
                 if user_input.upper() == stack.get_name()[0]:
-                    print('Match found')
-                    print(user_input, stack.get_name()[0], stack.get_name())
                     return stack
 
 
@@ -60,22 +58,20 @@ while right_stack.get_size() != num_disks:
 
     while True:
 
-        print("\nFROM?\n")
+        print("\nWhich stack do you want to move from?\n")
         from_stack = get_input()
-        print('from_stack', from_stack.get_name())
-        print("\nTO?\n")
+        print("\nWhich stack do you want to move to?\n")
         to_stack = get_input()
-        print("to_stack", to_stack.get_name())
 
         if from_stack.get_size() == 0:
-            print("\n\n!!!!!!!!! Invalid Move. Try Again - NOTHING TO MOVE (FROM) !!!!!!!!!!")
+            print("\n\n Invalid Move. Try Again - Nothing in 'from' stack to move")
         elif to_stack.get_size() == 0 or from_stack.peek() < to_stack.peek():
             disk = from_stack.pop()
             to_stack.push(disk)
             num_user_moves += 1
             break
         else:
-            print("\n\nInvalid Move. HIGH DISK CANNOT BE PLACED ON A LOWER DISK")
+            print("\n\nInvalid Move. Try again - High disk cannot not be plaved on lower disk")
 
 print("\n\nYou completed the game in {0} moves, and the optimal number of moves is {1}".format(num_user_moves,
                                                                                                 num_optimal_moves))
